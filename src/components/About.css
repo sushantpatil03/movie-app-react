@@ -1,0 +1,27 @@
+.about-us-card {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #212426;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .card-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: cyan;
+  }
+  
+  .card-content {
+    margin-top: 10px;
+    color: #fff;
+  }
+  
