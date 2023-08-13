@@ -24,6 +24,7 @@ function App() {
   }
 
   useEffect(()=>{ 
+    setSearchTerm('Avengers');
     searchMovie('Avengers');
   },[])
 
@@ -75,7 +76,7 @@ function App() {
               </div>
              ) : (
               <div className="empty">
-                <h2>No Movies Found! Check your spelling you satvi fail!</h2>
+                <h2>No Movies Found! Check your spelling!</h2>
               </div>
              )
         }
