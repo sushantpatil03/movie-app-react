@@ -48,7 +48,7 @@ function App() {
     <>  
       <Navbar/>
       <div className="app">
-        <About/>
+        {/* <About/> */}
         <h1>SushMovies</h1>
 
         <div className="search">
