@@ -14,7 +14,7 @@ import About from "./components/About";
 function App() {
   
   const MOVIE_API = "b481f0f9";
-  const MOVIE_API_URL = "http://www.omdbapi.com?i=tt3896198&apikey="+MOVIE_API;
+  const MOVIE_API_URL = "https://www.omdbapi.com?i=tt3896198&apikey="+MOVIE_API;
 
   const searchMovie = async (movie_title) => {
     const response = await fetch(`${MOVIE_API_URL}&s=${movie_title}`);
