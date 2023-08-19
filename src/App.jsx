@@ -9,18 +9,28 @@ import SearchIcon from './search.svg';
 import MovieCard from "./components/MovieCard";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
+import * as dotenv from "dotenv"
+
 
 
 function App() {
+  const [loading, setloading] = useState(false)
   
-  const MOVIE_API = "b481f0f9";
+  const MOVIE_API = import.meta.env.VITE_MOVIE_API;
   const MOVIE_API_URL = "https://www.omdbapi.com?i=tt3896198&apikey="+MOVIE_API;
 
   const searchMovie = async (movie_title) => {
-    const response = await fetch(`${MOVIE_API_URL}&s=${movie_title}`);
-    const data = await response.json();
+    setloading(true)
+    let response={}
+    setTimeout(async() => {
+      response = await fetch(`${MOVIE_API_URL}&s=${movie_title}`);
+      const data = await response.json();
     setallMovies(data.Search);
-    console.log(data.Search);
+    setloading(false)
+    console.log("received")
+    console.log(data.Search)
+    }, 500)
+    
   }
 
   useEffect(()=>{ 
@@ -30,6 +40,7 @@ function App() {
 
   const [allMovies, setallMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchTimeout, setSearchTimeout] = useState(null);
 
   // const movie1 = {
   //   "Title": "Batman v Superman: Dawn of Justice (Ultimate Edition)",
@@ -41,9 +52,25 @@ function App() {
 
   const changeSeach = (event) =>{
       const value = event.target.value;
-      console.log(value);
       
   }
+
+  const handleSearchChange = (e) => {
+    clearTimeout(searchTimeout);
+    setSearchTerm(e.target.value)
+    setSearchTimeout(
+      setTimeout(() => {
+        fetchNewPost(e.target.value);
+      }, 500)
+    );
+  }
+
+  const fetchNewPost = (term) => {
+      searchMovie(term)
+  }
+
+
+  
 
   return (
     <>  
@@ -54,9 +81,9 @@ function App() {
 
         <div className="search">
           <input className="searchedMovie"
-            placeholder="Search for movies "
+            placeholder={process.env.MOVIE_API}
             value={searchTerm}
-            onChange={(e)=> setSearchTerm(e.target.value)}
+            onChange={(e)=> handleSearchChange(e)}
             
           />
           <img 
@@ -66,8 +93,15 @@ function App() {
         </div>
 
 
-        {
-            allMovies?.length >0 ? ( 
+        {loading?(<div className="pyramid-loader">
+  <div className="wrapper">
+    <span className="side side1"></span>
+    <span className="side side2"></span>
+    <span className="side side3"></span>
+    <span className="side side4"></span>
+    <span className="shadow"></span>
+  </div>  
+</div>):(allMovies?.length >0 ? ( 
               <div className="container">
                 {
                   allMovies.map((movie) => <MovieCard movieDetails={movie}/>)
@@ -78,7 +112,8 @@ function App() {
               <div className="empty">
                 <h2>No Movies Found! Check your spelling!</h2>
               </div>
-             )
+             ))
+            
         }
 
         
