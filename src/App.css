@@ -12,9 +12,21 @@
   --font-raleway: "Raleway", sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
 body {
   font-family: var(--font-roboto);
   background-color: #212426;
+  /* overflow: hidden; */
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .app {
@@ -25,7 +37,7 @@ body {
   flex-direction: column;
 }
 
-h1 {
+.home_h1 {
   font-size: 3rem;
   letter-spacing: 0.9px;
   background: linear-gradient(
