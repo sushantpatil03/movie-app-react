@@ -15,7 +15,7 @@ const About = () => {
     <div className="card-content">
       <h3 className='about__h3'>A Great Movie App</h3>
       <h1 className='about__h1'>Discover a centralized hub for all your beloved movies</h1>
-      <p className='about__p'>Hello from Sushant!! I am too glad you visited my website. This is just a chill weekend project by me to find movies by search term. </p>
+      <p className='about__p'>Hello from Sushant!! I am too glad you visited my website. This is just a chill weekend project by me to find movies by search term. Don't forget to give a kiss to Sush now! 😁</p>
     </div>
   </div>
   );
